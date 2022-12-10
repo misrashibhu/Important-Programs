@@ -1,0 +1,66 @@
+Vector Containing First & Last Occurrences of a Target Element 
+
+vector<int> searchRange(vector<int>& nums, int target) {
+        int l=0;
+        int h=nums.size()-1;
+        vector<int>v(2);
+        int mid;
+        int res=-1;
+
+        //First Occurance
+
+        while(l<=h)
+        {
+            mid=l+((h-l)/2);
+            if(nums[mid]<target)
+            {
+                l=mid+1;
+            }
+            else if(nums[mid]==target)
+            {
+                res=mid;
+                h=mid-1;
+            }
+            else
+            {
+                h=mid-1;
+            }
+        }
+        v[0]=res;
+        if(res!=-1)
+        {
+            l=0;
+            h=nums.size()-1;
+
+            //Last Occurance
+
+            while(l<=h)
+        {
+            mid=l+((h-l)/2);
+            if(nums[mid]<target)
+            {
+                l=mid+1;
+            }
+            else if(nums[mid]==target)
+            {
+                res=mid;
+                l=mid+1;
+            }
+            else
+            {
+                h=mid-1;
+            }
+        } // – end of while//
+
+            v[1]=res;
+
+        } // – end of if(res!=-1)//
+
+        else
+        {
+            v[1]=-1;
+        }
+
+        return v;
+
+    }
